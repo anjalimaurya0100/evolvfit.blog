@@ -5,7 +5,6 @@ import com.evolvfit.blog.exception.ResourceNotFoundException;
 import com.evolvfit.blog.model.Blog;
 import com.evolvfit.blog.model.User;
 import com.evolvfit.blog.repository.BlogRepository;
-import com.evolvfit.blog.repository.CommentRepository;
 import com.evolvfit.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +22,18 @@ public class BlogController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private CommentRepository commentRepository;
+    @PostMapping("/blogs")
+    public Blog saveBlog(@Valid @RequestBody BlogRequest blogRequest) {
+        Optional<User> optionalUser = userRepository.findById(blogRequest.getUserId());
+        if (optionalUser.isEmpty()) {
+            throw new ResourceNotFoundException("could not find user " + blogRequest.getUserId());
+        }
+        Blog.BlogBuilder blogBuilder = Blog.builder();
+        blogBuilder.title(blogRequest.getTitle());
+        blogBuilder.body(blogRequest.getBody());
+        blogBuilder.postedBy(optionalUser.get());
+        return blogRepository.save(blogBuilder.build());
+    }
 
     @GetMapping("/blogs")
     public List<Blog> getListOfBlogs() {
@@ -39,20 +48,6 @@ public class BlogController {
         } else {
             return optionalBlog.get();
         }
-
-    }
-
-    @PostMapping("/blogs")
-    public Blog saveBlog(@Valid @RequestBody BlogRequest blogRequest) {
-        Optional<User> optionalUser = userRepository.findById(blogRequest.getUserId());
-        if (optionalUser.isEmpty()) {
-            throw new ResourceNotFoundException("could not find user " + blogRequest.getUserId());
-        }
-        Blog.BlogBuilder blogBuilder = Blog.builder();
-        blogBuilder.title(blogRequest.getTitle());
-        blogBuilder.body(blogRequest.getBody());
-        blogBuilder.postedBy(optionalUser.get());
-        return blogRepository.save(blogBuilder.build());
     }
 
     @PutMapping("/blogs/{blogId}")

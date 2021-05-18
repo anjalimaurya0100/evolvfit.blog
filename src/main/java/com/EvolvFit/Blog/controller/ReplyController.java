@@ -17,7 +17,6 @@ import java.util.Optional;
 
 @RestController
 public class ReplyController {
-
     @Autowired
     private UserRepository userRepository;
 
@@ -27,26 +26,26 @@ public class ReplyController {
     @Autowired
     private ReplyRepository replyRepository;
 
-    @GetMapping("comments/{commentId}/replies")
+    @GetMapping("/comments/{commentId}/replies")
     public List<Reply> getAllRepliesByCommentID(@PathVariable(name = "commentId") Long id) {
         Optional<Comment> optionalComment = commentRepository.findById(id);
         if (optionalComment.isEmpty()) {
-            throw new ResourceNotFoundException("could not find comment  " + id);
+            throw new ResourceNotFoundException("could not find comment " + id);
         } else {
 
             return replyRepository.findByCommentId(id);
         }
     }
 
-    @PostMapping("comments/{commentId}/replies")
+    @PostMapping("/comments/{commentId}/replies")
     public Reply saveReplyToComment(@PathVariable(name = "commentId") Long id, @Valid @RequestBody ReplyRequest replyRequest) {
         Optional<Comment> optionalComment = commentRepository.findById(id);
         if (optionalComment.isEmpty()) {
-            throw new ResourceNotFoundException("could not find comment  " + id);
+            throw new ResourceNotFoundException("could not find comment " + id);
         } else {
             Optional<User> optionalUser = userRepository.findById(replyRequest.getUserId());
             if (optionalUser.isEmpty()) {
-                throw new ResourceNotFoundException("could not find user  " + replyRequest.getUserId());
+                throw new ResourceNotFoundException("could not find user " + replyRequest.getUserId());
             }
             Reply.ReplyBuilder replyBuilder = Reply.builder();
             replyBuilder.body(replyRequest.getBody());

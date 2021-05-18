@@ -6,8 +6,6 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 
 @Data
@@ -22,12 +20,9 @@ public class Blog extends AuditModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank
     @Column(columnDefinition = "text", nullable = false)
-    @Size(min = 5, max = 200)
     private String title;
 
-    @NotBlank
     @Column(columnDefinition = "text", nullable = false)
     private String body;
 

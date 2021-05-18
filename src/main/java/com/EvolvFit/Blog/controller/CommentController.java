@@ -30,11 +30,11 @@ public class CommentController {
     public Comment addComment(@PathVariable(name = "blogId") Long id, @Valid @RequestBody CommentRequest commentRequest) {
         Optional<Blog> optionalBlog = blogRepository.findById(id);
         if (optionalBlog.isEmpty()) {
-            throw new ResourceNotFoundException("could not find Blog " + id);
+            throw new ResourceNotFoundException("could not find blog " + id);
         } else {
             Optional<User> optionalUser = userRepository.findById(commentRequest.getUserId());
             if (optionalUser.isEmpty()) {
-                throw new ResourceNotFoundException("could not find user  " + commentRequest.getUserId());
+                throw new ResourceNotFoundException("could not find user " + commentRequest.getUserId());
             }
             Comment.CommentBuilder commentBuilder = Comment.builder();
             commentBuilder.blog(optionalBlog.get());
@@ -48,7 +48,7 @@ public class CommentController {
     public List<Comment> getAllComments(@PathVariable(name = "blogId") Long id) {
         Optional<Blog> optionalBlog = blogRepository.findById(id);
         if (optionalBlog.isEmpty()) {
-            throw new ResourceNotFoundException("could not found Blog " + id);
+            throw new ResourceNotFoundException("could not found blog " + id);
         } else {
             return commentRepository.findByBlogId(id);
         }
