@@ -1,18 +1,18 @@
 # Evolvfit.blog
 This project consist of API's on:
 
-####Blog Entity:
+#### Blog Entity APIs:
 * Create a blog - `POST /blogs`
 * List of all blogs - `GET /blogs`
 * Get a specific blog by code - `GET /blogs/{blogId}`
 * Update a blog - `PUT /blogs/{blogId}`
 * Delete a blog - `DELETE /blogs/{blogId}`
 
-####Comments Entity:
+#### Comments Entity APIs:
 * Create a comment for a blog- `POST /blogs/{blogId}/comments`
 * List of all comments for blog- `GET /blogs/{blogId}/comments`
 
-####Reply Entity:
+#### Reply Entity APIs:
 * List of all replies for a comment- `GET /comments/{commentId}/replies`
 * Create a reply for a comment- `POST /comments/{commentId}/replies`
 
