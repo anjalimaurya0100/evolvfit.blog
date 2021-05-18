@@ -25,7 +25,7 @@ This project consist of API's on:
 * Spring WEB
 * Spring Data JPA
 * Spring Validation
-* H2 - Using SQL database(H2) as we have pre-defined schema
+* H2 - Using SQL database(H2) as we have pre-defined schema[check `blog_db_model.svg` file for DB models]
 * Lombok
 
 #### Command to run the application - `./gradlew bootRun`
