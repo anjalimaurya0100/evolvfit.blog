@@ -1,4 +1,4 @@
-package com.EvolvFit.Blog.model;
+package com.evolvfit.blog.model;
 
 import lombok.*;
 

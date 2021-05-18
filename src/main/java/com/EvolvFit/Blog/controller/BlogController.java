@@ -1,12 +1,12 @@
-package com.EvolvFit.Blog.controller;
+package com.evolvfit.blog.controller;
 
-import com.EvolvFit.Blog.dto.BlogRequest;
-import com.EvolvFit.Blog.exception.ResourceNotFoundException;
-import com.EvolvFit.Blog.model.Blog;
-import com.EvolvFit.Blog.model.User;
-import com.EvolvFit.Blog.repository.BlogRepository;
-import com.EvolvFit.Blog.repository.CommentRepository;
-import com.EvolvFit.Blog.repository.UserRepository;
+import com.evolvfit.blog.dto.BlogRequest;
+import com.evolvfit.blog.exception.ResourceNotFoundException;
+import com.evolvfit.blog.model.Blog;
+import com.evolvfit.blog.model.User;
+import com.evolvfit.blog.repository.BlogRepository;
+import com.evolvfit.blog.repository.CommentRepository;
+import com.evolvfit.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -77,7 +77,7 @@ public class BlogController {
     public ResponseEntity<Blog> removeBlog(@PathVariable(name = "blogId") Long id) {
         Optional<Blog> optionalBlog = blogRepository.findById(id);
         if (optionalBlog.isEmpty()) {
-            throw new ResourceNotFoundException("could not find blog "  +  id);
+            throw new ResourceNotFoundException("could not find blog " + id);
         } else {
             blogRepository.delete(optionalBlog.get());
             return ResponseEntity.ok(optionalBlog.get());

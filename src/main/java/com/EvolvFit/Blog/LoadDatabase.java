@@ -1,14 +1,12 @@
-package com.EvolvFit.Blog;
+package com.evolvfit.blog;
 
-import com.EvolvFit.Blog.model.User;
-import com.EvolvFit.Blog.repository.UserRepository;
+import com.evolvfit.blog.model.User;
+import com.evolvfit.blog.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Date;
 
 @Configuration
 public class LoadDatabase {

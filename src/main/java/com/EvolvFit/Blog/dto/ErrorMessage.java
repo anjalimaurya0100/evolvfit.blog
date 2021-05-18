@@ -1,4 +1,4 @@
-package com.EvolvFit.Blog.dto;
+package com.evolvfit.blog.dto;
 
 import lombok.Getter;
 import lombok.Setter;
