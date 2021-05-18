@@ -1,4 +1,4 @@
-package com.EvolvFit.Blog;
+package com.evolvfit.blog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
